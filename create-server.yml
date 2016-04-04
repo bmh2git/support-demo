@@ -1,0 +1,15 @@
+---
+- name: create a server with a public ip
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: create a server in my account
+      clc_server:
+        name: test
+        template: ubuntu-14-64
+        count: 1
+        group: 'Default Group'
+        password: "{{ secret_pswd }}"
+        state: present
+      register: my_server
+    - debug: var=my_server 
